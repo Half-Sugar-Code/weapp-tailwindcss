@@ -1,5 +1,19 @@
 # weapp-tailwindcss
 
+## 5.1.5
+
+### Patch Changes
+
+- 🐛 **在 `weapp-tailwindcss` 主配置中新增 `styleInjector`，默认关闭。启用后会内置复用 `weapp-style-injector` 的样式入口注入能力，并在 Vite/Webpack 中按 `appType` 自动选择 uni-app、Taro、Mpx 或通用预设；当主插件通过 `disabled: true` 或 `disabled: { plugin: true }` 关闭时，样式注入也会同步关闭。** [`747dcf3`](https://github.com/sonofmagic/weapp-tailwindcss/commit/747dcf34a1cf77a14b859ee86f537ce2cd89bddd) by @sonofmagic
+  - 同时修复 `@weapp-tailwindcss/postcss` 中 `Px2rpxOptions` 在 NodeNext 类型解析下无法正确导出的声明问题。
+  - `weapp-tailwindcss` 直接复用 `weapp-style-injector` 的现有实现，避免在主包内重复维护样式注入逻辑，同时保持 `weapp-style-injector` 原有独立入口不变。
+
+- 🐛 **修复 Web target 下 Vite Vue SFC 作为 Tailwind source candidate 更新时，插件返回 CSS HMR 模块覆盖 Vue SFC 自身 HMR 结果的问题。** [#956](https://github.com/sonofmagic/weapp-tailwindcss/pull/956) by @sonofmagic
+
+- 🐛 **移除 `@ast-core/escape` 直接依赖，改为在 `weapp-tailwindcss` 内部维护 JS 字符串字面量转义逻辑，减少发布包运行时依赖与 webpack 缓存依赖解析噪声。** [`4873962`](https://github.com/sonofmagic/weapp-tailwindcss/commit/4873962435af8615cb2670237d1865d47db8b361) by @sonofmagic
+- 📦 **Dependencies** [`747dcf3`](https://github.com/sonofmagic/weapp-tailwindcss/commit/747dcf34a1cf77a14b859ee86f537ce2cd89bddd)
+  → `@weapp-tailwindcss/postcss@3.1.5`, `weapp-style-injector@1.0.0`
+
 ## 5.1.4
 
 ### Patch Changes
